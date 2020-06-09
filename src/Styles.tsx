@@ -68,6 +68,10 @@ const useStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
     drawerPaper: {
       position: "relative",
       whiteSpace: "nowrap",
@@ -76,6 +80,14 @@ const useStyles = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
+    },
+    drawerHeader: {
+      display: "flex",
+      alignItems: "center",
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+      justifyContent: "flex-end",
     },
     drawerPaperClose: {
       overflowX: "hidden",
@@ -93,9 +105,27 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       height: "100vh",
       overflow: "auto",
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      marginLeft: -drawerWidth,
+    },
+    contentShift: {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
     },
     fixedHeight: {
       height: 600,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    hide: {
+      display: "none",
     },
   })
 );
